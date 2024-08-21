@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "patterns",
+  "info": {
+    "singularName": "pattern",
+    "pluralName": "patterns",
+    "displayName": "Pattern"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Description": {
+      "type": "text",
+      "required": true
+    },
+    "Problem": {
+      "type": "text",
+      "required": true
+    },
+    "Solution": {
+      "type": "text",
+      "required": true
+    },
+    "pattern_example": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::pattern-example.pattern-example",
+      "mappedBy": "pattern"
+    },
+    "cwe_weaknesses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::cwe-weakness.cwe-weakness",
+      "mappedBy": "patterns"
+    }
+  }
+}

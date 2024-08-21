@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cwe_weaknesses",
+  "info": {
+    "singularName": "cwe-weakness",
+    "pluralName": "cwe-weaknesses",
+    "displayName": "CWE Weakness",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "cwe_id": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "Description": {
+      "type": "text",
+      "required": true
+    },
+    "patterns": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::pattern.pattern",
+      "inversedBy": "cwe_weaknesses"
+    }
+  }
+}

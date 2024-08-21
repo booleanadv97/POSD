@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pattern_examples",
+  "info": {
+    "singularName": "pattern-example",
+    "pluralName": "pattern-examples",
+    "displayName": "Pattern Example"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Description": {
+      "type": "text",
+      "required": true
+    },
+    "pattern": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::pattern.pattern",
+      "inversedBy": "pattern_example"
+    }
+  }
+}

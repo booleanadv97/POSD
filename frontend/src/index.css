@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap");
+@import "~antd/dist/antd.css";
+
+:root {
+  --text-color: #001529;
+  --white: #ffffff;
+}
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.custom-dropdown-menu {
+  background-color: red;  
+}
+
+/* Layout CSS */
+.ant-layout {
+  background: var(--white);
+}
+
+.ant-layout-header,
+.ant-layout-footer {
+  text-align: center;
+  background: var(--text-color);
+  color: var(--white);
+}
+
+/* Header CSS */
+.header_space {
+  width: 100%;
+  justify-content: space-between;
+  align-items: inherit;
+}
+.icon_logo {
+  padding: 0px;
+  color: var(--white);
+}
+.logo_text{
+  font-size: 32px;
+}
+.icon_text {
+  display: flex;
+  align-items: flex-start;
+}
+.auth_buttons{
+  display: flex;
+}
+.auth_button_profile{
+  padding: 0px;
+  font-weight: bold;
+}
+.auth_button_profile:hover{
+  color: #fff;
+}
+.auth_button_logout{
+  background: dodgerblue;
+  border: 1px #001529;
+  color: #fff;
+}
+.auth_button_logout:hover{
+  color: dodgerblue;
+  background: #fff;
+}
+
+.social_image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Social Card CSS */
+.social_card {
+  box-shadow: 0 13px 27px -5px rgb(50 50 93 / 25%),
+    0 8px 16px -8px rgb(0 0 0 / 30%), 0 -6px 16px -6px rgb(0 0 0 / 3%);
+  border-radius: 4px;
+  background-color: bisque;
+  color: var(--text-color);
+}
+
+.social_card_space {
+  width: 100%;
+}
+
+.social_button {
+  padding: 0px;
+}
+ 
+
+/* Profile Page CSS */
+.profile_page_card {
+  box-shadow: 0 13px 27px -5px rgb(50 50 93 / 25%),
+    0 8px 16px -8px rgb(0 0 0 / 30%), 0 -6px 16px -6px rgb(0 0 0 / 3%);
+  border-radius: 4px;
+}
+
+.profile_save_btn {
+  display: block;
+  margin-left: auto;
+}
+
+.login_submit_btn {
+  display: block;
+  width: 100%;
+}
+
+.alert_error {
+  margin-bottom: 8px;
+}
+
+.form_help_text {
+  text-align: center;
+}
