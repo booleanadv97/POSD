@@ -17,7 +17,7 @@
 
     const viewPatternExample = (pattern_id, pattern_title) => {
       const data = { pattern_id: pattern_id, pattern_title: pattern_title };
-      navigate('/viewpatternexample', { state: data });
+      navigate('/patterns/viewpatternexample', { state: data });
     };
 
     const fetchPatterns = async () => {

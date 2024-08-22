@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Menu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
-import { useAuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const Sidebar = () => {
-  const { user } = useAuthContext();
+  const { user } = useContext(AuthContext);
   const location = useLocation();
 
   const menuItems = [
     ...(user ?  [{ label: 'Home', path: '/' }] : []),
     ...(user ?  [{ label: 'Patterns', path: '/patterns' }] : []),
+    ...(user ?  [{ label: 'CWEs', path: '/cwes' }] : []),
     ...(!user ?  [{ label: 'Login', path: '/signin' }] : []),
     ...(!user ?  [{ label: 'Register', path: '/signup' }] : []),
-    ...(user?.role.name === 'Admin' ? [{ label: 'Admin', path: '/admin' }] : []),
   ];
 
   return (

@@ -11,7 +11,8 @@ import {
   Typography,
 } from "antd";
 import React, { Fragment, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import useScreenSize from "../../hooks/useScreenSize";
 import { API } from "../../constant";
@@ -46,16 +47,21 @@ const SignIn = () => {
       if (data?.error) {
         throw data?.error;
       } else {
+        // set the token
         setToken(data.jwt);
 
+        // set the user
         setUser(data.user);
 
         message.success(`Welcome back ${data.user.username}!`);
+
         navigate("/", { replace: true });
       }
     } catch (error) {
       console.error(error);
       setError(error?.message ?? "Something went wrong!");
+    } finally {
+      setIsLoading(false);
     }
   };
 

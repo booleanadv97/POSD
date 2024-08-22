@@ -1,11 +1,10 @@
-import { Dropdown, Menu, Space, Image } from "antd";
+import { Dropdown, Space, Image } from "antd";
 import React from "react";
 import { TbUserShield } from "react-icons/tb";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import { removeToken } from "../../helpers";
 import { AVATAR_API } from "../../constant";
-
 
 const AppHeader = () => {
   const { user, setUser } = useAuthContext();
@@ -17,20 +16,26 @@ const AppHeader = () => {
     navigate("/signin", { replace: true });
   };
 
-  const menu = (
-    <Menu>
-      <Menu.Item>
-      <Link style={{textDecoration:"none"}} to="/profile">View profile</Link>
-      </Menu.Item>
-      <Menu.Divider />
-      <Menu.Item onClick={handleLogout}>
-        Logout
-      </Menu.Item>
-    </Menu>
-  );
+  // Define the menu items using the `items` prop
+  const menuItems = [
+    {
+      key: 'profile',
+      label: <Link style={{ textDecoration: "none" }} to="/profile">View profile</Link>,
+    },
+    {
+      type: 'divider',  // Add a divider between items
+    },
+    {
+      key: 'logout',
+      label: 'Logout',
+      onClick: handleLogout,  // Attach the logout handler directly
+    },
+  ];
+
+  // Use the `menu` prop in the Dropdown component
   return (
     <Space className="header_space">
-      <Link style={{textDecoration: "none"}} to="/">
+      <Link style={{ textDecoration: "none" }} to="/">
         <div className="icon-with-text">
           <TbUserShield size={64} className="icon" />
           <span className="icon-text">POSD</span>
@@ -38,10 +43,8 @@ const AppHeader = () => {
       </Link>
       <Space className="auth_buttons">
         {user ? (
-          <>
-            <Space className="photo_user">
-              <Dropdown overlay={menu} trigger={['click']}>
-              <Image
+          <Dropdown menu={{ items: menuItems }} trigger={['click']}>
+              <Image  
                 className="social_image"
                 preview={false}
                 src={
@@ -49,13 +52,9 @@ const AppHeader = () => {
                   `${AVATAR_API}?name=${user.username}&background=1890ff&color=fff`
                 }
               />
-            </Dropdown>
-            </Space>
-          </>
+          </Dropdown>
         ) : (
-          <>
-           
-          </>
+          <></>
         )}
       </Space>
     </Space>

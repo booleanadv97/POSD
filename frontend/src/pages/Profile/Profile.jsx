@@ -15,7 +15,6 @@ const Profile = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          // set the auth token to the user's jwt
           Authorization: `Bearer ${getToken()}`,
         },
         body: JSON.stringify(data),

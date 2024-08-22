@@ -1,5 +1,5 @@
 import { Spin, Card, Row, Col, Space, Switch, Typography, message } from 'antd';
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import { API } from "../../constant";
 import { getToken } from "../../helpers";
@@ -16,10 +16,10 @@ const ViewPatternExample = () => {
       }}
     />
 
-  const fetchExamples = useCallback(async () => {
+  const fetchExamples = (async (id) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${API}/pattern-examples?filters[pattern][$eq]=${pattern_id}`, {
+      const response = await fetch(`${API}/pattern-examples?filters[pattern][$eq]=${id}`, {
         method: "GET",
         headers: {
           'Authorization': `Bearer ${getToken()}`, 
@@ -34,17 +34,16 @@ const ViewPatternExample = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [pattern_id]);
+  });
 
   useEffect(() => {
-    fetchExamples();
-  }, [fetchExamples]);
+    if(pattern_id){
+      fetchExamples(pattern_id);
+    }
+  }, [pattern_id]);
 
   if (isLoading) {
     return <Spin size="large" />;
-  }
-  if (!pattern_title){
-    return "No pattern specified";
   }
   return (
     <Row gutter={[32, 32]}>

@@ -5,37 +5,27 @@ import Home from "./pages/Home/Home";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Patterns from "./pages/Patterns/Patterns"
-import ViewPatternExample from "./pages/ViewPatternExample/ViewPatternExample";
+import CWEs from "./pages/CWEs/CWEs"
+import CWEPatterns from "./pages/CWEs/CWEPatterns"
+import ViewPatternExample from "./pages/Patterns/ViewPatternExample";
+import { getToken } from "./helpers";
 import { useAuthContext } from "./context/AuthContext";
-import NotAuthorized from "./pages/Unauthorized/Unauthorized";  
-import { Spin } from "antd";
 const AppRoutes = () => {
-  const {user, isLoading} = useAuthContext();
-  if (isLoading) {
-    return <Spin size="large" />;
-  }
-  if (!user){
-    return (<Routes>
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
-    </Routes>);
-  }
+  useAuthContext();
   return (
     <Routes>
-      <Route path="/" element={ <Home /> } />
-      <Route path="/patterns" element={<Patterns />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/viewpatternexample" element={<ViewPatternExample />} />
-      <Route
-        path="/admin"
-        element={user?.role.name === 'Admin' ? (
-            <Home /> 
-          ) : (
-            <Navigate to="/not-authorized" />
-          )
-        }
-      /> 
-      <Route path="/not-authorized" element={<NotAuthorized />} />
+      {/* Home */}
+      <Route path="/" element={ getToken() ? <Home /> : <Navigate to="/signin"/>} />
+      {/* Pattern routes*/}
+      <Route path="/patterns" element={getToken() ? <Patterns />: <Navigate to="/signin"/>} />
+      <Route path="/patterns/viewpatternexample" element={getToken() ? <ViewPatternExample />: <Navigate to="/signin"/>} />
+      {/* CWE routes*/}
+      <Route path="/cwes" element={getToken() ? <CWEs />: <Navigate to="/signin"/>} />
+      <Route path="/viewcwepatterns" element={getToken() ? <CWEPatterns />: <Navigate to="/signin"/>} />
+      {/* User routes*/}
+      <Route path="/profile" element={getToken() ? <Profile />: <Navigate to="/signin"/>} />
+      <Route path="/signin" element={getToken() ? <Navigate to="/profile"/> : <SignIn/>} />
+      <Route path="/signup" element={getToken() ? <Navigate to="/profile"/> : <SignUp/>} />
     </Routes>
   );
 };
