@@ -1,24 +1,26 @@
 import React from "react";
-import { Col, Layout, Row } from "antd";
+import { Layout } from "antd";
 import AppHeader from "./components/Appheader/Appheader";
+import Sidebar from './components/Sidebar/Sidebar'; 
 import AppRoutes from "./Routes";
-const { Header, Content } = Layout;
+const { Header, Content , Sider} = Layout;
 
 const App = () => {
   return (
-    <Layout>
-      <Row gutter={[0, 32]}>
-        <Col span={24}>
-          <Header>
-            <AppHeader />
-          </Header>
-        </Col>
-        <Col span={22} offset={1}>
-          <Content>
+    <Layout style={{ minHeight: '100vh' }}>
+      <Header style={{ background: "#03233f", height: "80px"}}>
+        <AppHeader />
+      </Header>
+      <Layout>
+        <Sider>
+          <Sidebar />
+        </Sider>
+        <Layout style={{ padding: '0 24px', minHeight: '100vh' }}>
+          <Content style={{ padding: '24px', margin: 0 }}>
             <AppRoutes />
           </Content>
-        </Col>
-      </Row>
+        </Layout>
+      </Layout>
     </Layout>
   );
 };

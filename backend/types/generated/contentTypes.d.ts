@@ -375,7 +375,7 @@ export interface ApiCweWeaknessCweWeakness extends Schema.CollectionType {
   };
   attributes: {
     cwe_id: Attribute.Integer & Attribute.Required & Attribute.Unique;
-    Description: Attribute.Text & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
     patterns: Attribute.Relation<
       'api::cwe-weakness.cwe-weakness',
       'manyToMany',
@@ -405,20 +405,16 @@ export interface ApiPatternPattern extends Schema.CollectionType {
     singularName: 'pattern';
     pluralName: 'patterns';
     displayName: 'Pattern';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Title: Attribute.String & Attribute.Required & Attribute.Unique;
-    Description: Attribute.Text & Attribute.Required;
-    Problem: Attribute.Text & Attribute.Required;
-    Solution: Attribute.Text & Attribute.Required;
-    pattern_example: Attribute.Relation<
-      'api::pattern.pattern',
-      'oneToOne',
-      'api::pattern-example.pattern-example'
-    >;
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    description: Attribute.Text & Attribute.Required;
+    problem: Attribute.Text & Attribute.Required;
+    solution: Attribute.Text & Attribute.Required;
     cwe_weaknesses: Attribute.Relation<
       'api::pattern.pattern',
       'manyToMany',
@@ -448,12 +444,13 @@ export interface ApiPatternExamplePatternExample extends Schema.CollectionType {
     singularName: 'pattern-example';
     pluralName: 'pattern-examples';
     displayName: 'Pattern Example';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Description: Attribute.Text & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
     pattern: Attribute.Relation<
       'api::pattern-example.pattern-example',
       'oneToOne',

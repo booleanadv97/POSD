@@ -17,7 +17,7 @@
       "required": true,
       "unique": true
     },
-    "Description": {
+    "description": {
       "type": "text",
       "required": true
     },
@@ -25,7 +25,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::pattern.pattern",
-      "inversedBy": "cwe_weaknesses"
+      "mappedBy": "cwe_weaknesses"
     }
   }
 }

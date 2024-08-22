@@ -48,18 +48,14 @@ const SignIn = () => {
       } else {
         setToken(data.jwt);
 
-        // set the user
         setUser(data.user);
-        
+
         message.success(`Welcome back ${data.user.username}!`);
-        
-        navigate("/profile", { replace: true });
+        navigate("/", { replace: true });
       }
     } catch (error) {
       console.error(error);
       setError(error?.message ?? "Something went wrong!");
-    } finally {
-      setIsLoading(false);
     }
   };
 

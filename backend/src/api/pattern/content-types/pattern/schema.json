@@ -4,41 +4,36 @@
   "info": {
     "singularName": "pattern",
     "pluralName": "patterns",
-    "displayName": "Pattern"
+    "displayName": "Pattern",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string",
       "required": true,
       "unique": true
     },
-    "Description": {
+    "description": {
       "type": "text",
       "required": true
     },
-    "Problem": {
+    "problem": {
       "type": "text",
       "required": true
     },
-    "Solution": {
+    "solution": {
       "type": "text",
       "required": true
-    },
-    "pattern_example": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::pattern-example.pattern-example",
-      "mappedBy": "pattern"
     },
     "cwe_weaknesses": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::cwe-weakness.cwe-weakness",
-      "mappedBy": "patterns"
+      "inversedBy": "patterns"
     }
   }
 }

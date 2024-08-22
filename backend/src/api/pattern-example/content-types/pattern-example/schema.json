@@ -4,22 +4,22 @@
   "info": {
     "singularName": "pattern-example",
     "pluralName": "pattern-examples",
-    "displayName": "Pattern Example"
+    "displayName": "Pattern Example",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Description": {
+    "description": {
       "type": "text",
       "required": true
     },
     "pattern": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::pattern.pattern",
-      "inversedBy": "pattern_example"
+      "target": "api::pattern.pattern"
     }
   }
 }

@@ -14,9 +14,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.custom-dropdown-menu {
-  background-color: red;  
-}
 
 /* Layout CSS */
 .ant-layout {
@@ -32,6 +29,7 @@ code {
 
 /* Header CSS */
 .header_space {
+  padding: 5px 0px;
   width: 100%;
   justify-content: space-between;
   align-items: inherit;
@@ -40,37 +38,27 @@ code {
   padding: 0px;
   color: var(--white);
 }
-.logo_text{
-  font-size: 32px;
-}
-.icon_text {
+.icon-with-text {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
-.auth_buttons{
-  display: flex;
+
+.icon {
+  margin-right: 8px;  
 }
-.auth_button_profile{
-  padding: 0px;
-  font-weight: bold;
-}
-.auth_button_profile:hover{
-  color: #fff;
-}
-.auth_button_logout{
-  background: dodgerblue;
-  border: 1px #001529;
-  color: #fff;
-}
-.auth_button_logout:hover{
-  color: dodgerblue;
-  background: #fff;
+
+.icon-text {
+  font-size: 24px;  
+  font-weight: bold; 
 }
 
 .social_image {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border: 1px solid #001529;
   border-radius: 50%;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
 }
 
 /* Social Card CSS */
@@ -85,11 +73,6 @@ code {
 .social_card_space {
   width: 100%;
 }
-
-.social_button {
-  padding: 0px;
-}
- 
 
 /* Profile Page CSS */
 .profile_page_card {
@@ -114,4 +97,26 @@ code {
 
 .form_help_text {
   text-align: center;
+}
+
+/* Patterns CSS */
+.pattern_card {
+  box-shadow: 0 13px 27px -5px rgb(50 50 93 / 25%),
+    0 8px 16px -8px rgb(0 0 0 / 30%), 0 -6px 16px -6px rgb(0 0 0 / 3%);
+  border-radius: 4px;
+  color: var(--text-color);
+}
+
+.pattern_card_space {
+  width: 100%;
+}
+
+.pattern_button {
+  padding: 0px;
+}
+ 
+/*Sidebar CSS */
+.sidebar_link{
+  color: #ff0000;
+  font-style: normal;
 }
