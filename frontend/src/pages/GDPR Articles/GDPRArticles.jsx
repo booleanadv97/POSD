@@ -1,17 +1,24 @@
-import { Spin, Card, Row, Col, Space, Button, Switch, Typography, message } from 'antd';
+import { Spin, Card, Row, Col, Button, Space, Switch, Typography, message } from 'antd';
 import React, { useEffect, useState } from "react";
 import { API } from "../../constant";
+import { useNavigate } from "react-router-dom";
 import { getToken } from "../../helpers";
 const GDPRArticles = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [ellipsis, setEllipsis] = useState(true);
+  const navigate = useNavigate();
   <Switch
       checked={ellipsis}
       onChange={() => {
         setEllipsis(!ellipsis);
       }}
     />
+
+  const viewGDPRArticlePatterns = (article_id, article_title) => {
+    const data = { article_id: article_id, article_title: article_title };
+    navigate('/gdprarticles/viewgdprarticlepatterns', { state: data });
+  };
 
   const fetchArticles = async () => {
     setIsLoading(true);
@@ -50,8 +57,10 @@ const GDPRArticles = () => {
               direction="vertical"
               align="center"
             >
+              <Typography.Title level={2}>Article {article.attributes.article_number}</Typography.Title>
               <Typography.Title level={3}>{article.attributes.title}</Typography.Title>
               <Typography.Paragraph ellipsis={ellipsis ? { rows: 4, expandable: true, symbol: 'more' } : false}>{article.attributes.description}</Typography.Paragraph>
+              <Button type="link" onClick={() => viewGDPRArticlePatterns(article.id, article.attributes.title)}>View patterns associated</Button>
             </Space>
           </Card>
         </Col>
