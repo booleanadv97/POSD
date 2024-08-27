@@ -9,6 +9,7 @@ import CWEs from "./pages/CWEs/CWEs"
 import CWEPatterns from "./pages/CWEs/CWEPatterns"
 import ViewPatternExample from "./pages/Patterns/ViewPatternExample";
 import ViewCWEsByPattern from "./pages/Patterns/ViewCWEsByPattern";
+import GDPRArticles from "./pages/GDPR Articles/GDPRArticles";
 import { getToken } from "./helpers";
 import { useAuthContext } from "./context/AuthContext";
 const AppRoutes = () => {
@@ -24,6 +25,8 @@ const AppRoutes = () => {
       {/* CWE routes*/}
       <Route path="/cwes" element={getToken() ? <CWEs />: <Navigate to="/signin"/>} />
       <Route path="/viewcwepatterns" element={getToken() ? <CWEPatterns />: <Navigate to="/signin"/>} />
+      {/* GDPR Articles routes*/}
+      <Route path="/gdprarticles" element={getToken() ? <GDPRArticles />: <Navigate to="/signin"/>} />
       {/* User routes*/}
       <Route path="/profile" element={getToken() ? <Profile />: <Navigate to="/signin"/>} />
       <Route path="/signin" element={getToken() ? <Navigate to="/profile"/> : <SignIn/>} />

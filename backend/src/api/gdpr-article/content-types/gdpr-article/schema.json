@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "cwe_weaknesses",
+  "collectionName": "gdpr_articles",
   "info": {
-    "singularName": "cwe-weakness",
-    "pluralName": "cwe-weaknesses",
-    "displayName": "CWE Weakness",
+    "singularName": "gdpr-article",
+    "pluralName": "gdpr-articles",
+    "displayName": "GDPR Article",
     "description": ""
   },
   "options": {
@@ -12,10 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "cwe_id": {
+    "article_number": {
       "type": "integer",
-      "required": true,
-      "unique": true
+      "unique": true,
+      "required": true
     },
     "description": {
       "type": "text",
@@ -25,12 +25,11 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::pattern.pattern",
-      "mappedBy": "cwe_weaknesses"
+      "inversedBy": "gdpr_articles"
     },
     "title": {
       "type": "string",
-      "required": true,
-      "unique": false
+      "required": true
     }
   }
 }

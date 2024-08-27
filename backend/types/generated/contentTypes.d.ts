@@ -362,118 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiCweWeaknessCweWeakness extends Schema.CollectionType {
-  collectionName: 'cwe_weaknesses';
-  info: {
-    singularName: 'cwe-weakness';
-    pluralName: 'cwe-weaknesses';
-    displayName: 'CWE Weakness';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    cwe_id: Attribute.Integer & Attribute.Required & Attribute.Unique;
-    description: Attribute.Text & Attribute.Required;
-    patterns: Attribute.Relation<
-      'api::cwe-weakness.cwe-weakness',
-      'manyToMany',
-      'api::pattern.pattern'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::cwe-weakness.cwe-weakness',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::cwe-weakness.cwe-weakness',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPatternPattern extends Schema.CollectionType {
-  collectionName: 'patterns';
-  info: {
-    singularName: 'pattern';
-    pluralName: 'patterns';
-    displayName: 'Pattern';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required & Attribute.Unique;
-    description: Attribute.Text & Attribute.Required;
-    problem: Attribute.Text & Attribute.Required;
-    solution: Attribute.Text & Attribute.Required;
-    cwe_weaknesses: Attribute.Relation<
-      'api::pattern.pattern',
-      'manyToMany',
-      'api::cwe-weakness.cwe-weakness'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::pattern.pattern',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::pattern.pattern',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPatternExamplePatternExample extends Schema.CollectionType {
-  collectionName: 'pattern_examples';
-  info: {
-    singularName: 'pattern-example';
-    pluralName: 'pattern-examples';
-    displayName: 'Pattern Example';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    description: Attribute.Text & Attribute.Required;
-    pattern: Attribute.Relation<
-      'api::pattern-example.pattern-example',
-      'oneToOne',
-      'api::pattern.pattern'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::pattern-example.pattern-example',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::pattern-example.pattern-example',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -900,6 +788,162 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCweWeaknessCweWeakness extends Schema.CollectionType {
+  collectionName: 'cwe_weaknesses';
+  info: {
+    singularName: 'cwe-weakness';
+    pluralName: 'cwe-weaknesses';
+    displayName: 'CWE Weakness';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cwe_id: Attribute.Integer & Attribute.Required & Attribute.Unique;
+    description: Attribute.Text & Attribute.Required;
+    patterns: Attribute.Relation<
+      'api::cwe-weakness.cwe-weakness',
+      'manyToMany',
+      'api::pattern.pattern'
+    >;
+    title: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::cwe-weakness.cwe-weakness',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::cwe-weakness.cwe-weakness',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGdprArticleGdprArticle extends Schema.CollectionType {
+  collectionName: 'gdpr_articles';
+  info: {
+    singularName: 'gdpr-article';
+    pluralName: 'gdpr-articles';
+    displayName: 'GDPR Article';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    article_number: Attribute.Integer & Attribute.Required & Attribute.Unique;
+    description: Attribute.Text & Attribute.Required;
+    patterns: Attribute.Relation<
+      'api::gdpr-article.gdpr-article',
+      'manyToMany',
+      'api::pattern.pattern'
+    >;
+    title: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::gdpr-article.gdpr-article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::gdpr-article.gdpr-article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPatternPattern extends Schema.CollectionType {
+  collectionName: 'patterns';
+  info: {
+    singularName: 'pattern';
+    pluralName: 'patterns';
+    displayName: 'Pattern';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    description: Attribute.Text & Attribute.Required;
+    problem: Attribute.Text & Attribute.Required;
+    solution: Attribute.Text & Attribute.Required;
+    cwe_weaknesses: Attribute.Relation<
+      'api::pattern.pattern',
+      'manyToMany',
+      'api::cwe-weakness.cwe-weakness'
+    >;
+    gdpr_articles: Attribute.Relation<
+      'api::pattern.pattern',
+      'manyToMany',
+      'api::gdpr-article.gdpr-article'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::pattern.pattern',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::pattern.pattern',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPatternExamplePatternExample extends Schema.CollectionType {
+  collectionName: 'pattern_examples';
+  info: {
+    singularName: 'pattern-example';
+    pluralName: 'pattern-examples';
+    displayName: 'Pattern Example';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    description: Attribute.Text & Attribute.Required;
+    pattern: Attribute.Relation<
+      'api::pattern-example.pattern-example',
+      'oneToOne',
+      'api::pattern.pattern'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::pattern-example.pattern-example',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::pattern-example.pattern-example',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -910,9 +954,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::cwe-weakness.cwe-weakness': ApiCweWeaknessCweWeakness;
-      'api::pattern.pattern': ApiPatternPattern;
-      'api::pattern-example.pattern-example': ApiPatternExamplePatternExample;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -921,6 +962,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::cwe-weakness.cwe-weakness': ApiCweWeaknessCweWeakness;
+      'api::gdpr-article.gdpr-article': ApiGdprArticleGdprArticle;
+      'api::pattern.pattern': ApiPatternPattern;
+      'api::pattern-example.pattern-example': ApiPatternExamplePatternExample;
     }
   }
 }

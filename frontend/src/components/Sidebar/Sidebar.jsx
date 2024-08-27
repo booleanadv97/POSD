@@ -11,6 +11,7 @@ const Sidebar = () => {
     ...(user ?  [{ label: 'Home', path: '/' }] : []),
     ...(user ?  [{ label: 'Patterns', path: '/patterns' }] : []),
     ...(user ?  [{ label: 'CWEs', path: '/cwes' }] : []),
+    ...(user ?  [{ label: 'GDPR Articles', path: '/gdprarticles' }] : []),
     ...(!user ?  [{ label: 'Login', path: '/signin' }] : []),
     ...(!user ?  [{ label: 'Register', path: '/signup' }] : []),
   ];

@@ -34,6 +34,12 @@
       "relation": "manyToMany",
       "target": "api::cwe-weakness.cwe-weakness",
       "inversedBy": "patterns"
+    },
+    "gdpr_articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::gdpr-article.gdpr-article",
+      "mappedBy": "patterns"
     }
   }
 }
