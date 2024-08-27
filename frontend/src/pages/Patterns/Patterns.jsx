@@ -20,6 +20,11 @@
       navigate('/patterns/viewpatternexample', { state: data });
     };
 
+    const viewCWEsByPattern = (pattern_id, pattern_title) => {
+      const data = { pattern_id: pattern_id, pattern_title: pattern_title };
+      navigate('/patterns/viewcwesbypattern', { state: data });
+    };
+
     const fetchPatterns = async () => {
       setIsLoading(true);
       try {
@@ -60,6 +65,7 @@
                 <Typography.Title level={3}>{pattern.attributes.title}</Typography.Title>
                 <Typography.Paragraph ellipsis={ellipsis ? { rows: 4, expandable: true, symbol: 'more' } : false}>{pattern.attributes.description}</Typography.Paragraph>
                 <Button type="link" onClick={() => viewPatternExample(pattern.id, pattern.attributes.title)}>View examples</Button>
+                <Button type="link" onClick={() => viewCWEsByPattern(pattern.id, pattern.attributes.title)}>View CWEs associated</Button>
               </Space>
             </Card>
           </Col>

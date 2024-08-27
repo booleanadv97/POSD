@@ -8,6 +8,7 @@ import Patterns from "./pages/Patterns/Patterns"
 import CWEs from "./pages/CWEs/CWEs"
 import CWEPatterns from "./pages/CWEs/CWEPatterns"
 import ViewPatternExample from "./pages/Patterns/ViewPatternExample";
+import ViewCWEsByPattern from "./pages/Patterns/ViewCWEsByPattern";
 import { getToken } from "./helpers";
 import { useAuthContext } from "./context/AuthContext";
 const AppRoutes = () => {
@@ -19,6 +20,7 @@ const AppRoutes = () => {
       {/* Pattern routes*/}
       <Route path="/patterns" element={getToken() ? <Patterns />: <Navigate to="/signin"/>} />
       <Route path="/patterns/viewpatternexample" element={getToken() ? <ViewPatternExample />: <Navigate to="/signin"/>} />
+      <Route path="/patterns/viewcwesbypattern" element={getToken() ? <ViewCWEsByPattern />: <Navigate to="/signin"/>} />
       {/* CWE routes*/}
       <Route path="/cwes" element={getToken() ? <CWEs />: <Navigate to="/signin"/>} />
       <Route path="/viewcwepatterns" element={getToken() ? <CWEPatterns />: <Navigate to="/signin"/>} />
