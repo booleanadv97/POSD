@@ -12,6 +12,7 @@ import ViewCWEsByPattern from "./pages/Patterns/ViewCWEsByPattern";
 import GDPRArticles from "./pages/GDPR Articles/GDPRArticles";
 import GDPRArticlePatterns from "./pages/GDPR Articles/ViewGDPRArticlePatterns";
 import GDPRArticleCWEs from "./pages/GDPR Articles/ViewGDPRArticleCWEs";
+import ReportCWEWeakness from "./pages/CWEs/ReportCWEWeakness";
 import { getToken } from "./helpers";
 import { useAuthContext } from "./context/AuthContext";
 const AppRoutes = () => {
@@ -27,6 +28,7 @@ const AppRoutes = () => {
       {/* CWE routes*/}
       <Route path="/cwes" element={getToken() ? <CWEs />: <Navigate to="/signin"/>} />
       <Route path="/viewcwepatterns" element={getToken() ? <CWEPatterns />: <Navigate to="/signin"/>} />
+      <Route path="/reportcweweakness" element={getToken() ? <ReportCWEWeakness />: <Navigate to="/signin"/>} />
       {/* GDPR Articles routes*/}
       <Route path="/gdprarticles" element={getToken() ? <GDPRArticles />: <Navigate to="/signin"/>} />
       <Route path="/gdprarticles/viewgdprarticlepatterns" element={getToken() ? <GDPRArticlePatterns />: <Navigate to="/signin"/>} />

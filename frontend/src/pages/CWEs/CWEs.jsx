@@ -49,6 +49,11 @@ const CWEs = () => {
   }
   return (
     <Row gutter={[32, 32]}>
+      <Space
+              className="cwe_card_space"
+              direction="vertical"
+              align="end"
+            > <Button size="large" type="primary" onClick={() => navigate('/reportcweweakness')} danger>Report a vulnerability</Button> </Space>
       {CWEs.map((cwe, index) => (
         <Col md={8} lg={8} sm={24} xs={24} key={`${cwe.id}_${index}`}>
           <Card className="cwe_card">

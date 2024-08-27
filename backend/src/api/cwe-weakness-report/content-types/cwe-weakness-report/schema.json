@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cwe_weakness_reports",
+  "info": {
+    "singularName": "cwe-weakness-report",
+    "pluralName": "cwe-weakness-reports",
+    "displayName": "CWE Weakness Report"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}
