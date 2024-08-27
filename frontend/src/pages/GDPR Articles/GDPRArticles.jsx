@@ -20,6 +20,11 @@ const GDPRArticles = () => {
     navigate('/gdprarticles/viewgdprarticlepatterns', { state: data });
   };
 
+  const viewGDPRArticleCWEs = (article_id, article_title) => {
+    const data = { article_id: article_id, article_title: article_title };
+    navigate('/gdprarticles/viewgdprarticlecwes', { state: data });
+  };
+
   const fetchArticles = async () => {
     setIsLoading(true);
     try {
@@ -61,6 +66,7 @@ const GDPRArticles = () => {
               <Typography.Title level={3}>{article.attributes.title}</Typography.Title>
               <Typography.Paragraph ellipsis={ellipsis ? { rows: 4, expandable: true, symbol: 'more' } : false}>{article.attributes.description}</Typography.Paragraph>
               <Button type="link" onClick={() => viewGDPRArticlePatterns(article.id, article.attributes.title)}>View patterns associated</Button>
+              <Button type="link" onClick={() => viewGDPRArticleCWEs(article.id, article.attributes.title)}>View CWEs associated</Button>
             </Space>
           </Card>
         </Col>

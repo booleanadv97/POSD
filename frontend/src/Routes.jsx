@@ -10,7 +10,8 @@ import CWEPatterns from "./pages/CWEs/CWEPatterns"
 import ViewPatternExample from "./pages/Patterns/ViewPatternExample";
 import ViewCWEsByPattern from "./pages/Patterns/ViewCWEsByPattern";
 import GDPRArticles from "./pages/GDPR Articles/GDPRArticles";
-import GDPRArticlesPatterns from "./pages/GDPR Articles/ViewGDPRArticlePatterns";
+import GDPRArticlePatterns from "./pages/GDPR Articles/ViewGDPRArticlePatterns";
+import GDPRArticleCWEs from "./pages/GDPR Articles/ViewGDPRArticleCWEs";
 import { getToken } from "./helpers";
 import { useAuthContext } from "./context/AuthContext";
 const AppRoutes = () => {
@@ -28,7 +29,8 @@ const AppRoutes = () => {
       <Route path="/viewcwepatterns" element={getToken() ? <CWEPatterns />: <Navigate to="/signin"/>} />
       {/* GDPR Articles routes*/}
       <Route path="/gdprarticles" element={getToken() ? <GDPRArticles />: <Navigate to="/signin"/>} />
-      <Route path="/gdprarticles/viewgdprarticlepatterns" element={getToken() ? <GDPRArticlesPatterns />: <Navigate to="/signin"/>} />
+      <Route path="/gdprarticles/viewgdprarticlepatterns" element={getToken() ? <GDPRArticlePatterns />: <Navigate to="/signin"/>} />
+      <Route path="/gdprarticles/viewgdprarticlecwes" element={getToken() ? <GDPRArticleCWEs />: <Navigate to="/signin"/>} />
       {/* User routes*/}
       <Route path="/profile" element={getToken() ? <Profile />: <Navigate to="/signin"/>} />
       <Route path="/signin" element={getToken() ? <Navigate to="/profile"/> : <SignIn/>} />
