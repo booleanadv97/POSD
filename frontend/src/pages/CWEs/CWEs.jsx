@@ -15,6 +15,10 @@ const CWEs = () => {
       }}
     />
 
+  const reportCWEWeakness = () => {
+    navigate('/reportcweweakness');
+  };
+
   const viewCWEPatterns = (id, cwe_id) => {
     const data = { id: id, cwe_id: cwe_id };
     navigate('/viewcwepatterns', { state: data });
@@ -53,7 +57,7 @@ const CWEs = () => {
               className="cwe_card_space"
               direction="vertical"
               align="end"
-            > <Button size="large" type="primary" onClick={() => navigate('/reportcweweakness')} danger>Report a vulnerability</Button> </Space>
+            > <Button size="large" type="primary" onClick={() => reportCWEWeakness()} danger>Report a vulnerability</Button> </Space>
       {CWEs.map((cwe, index) => (
         <Col md={8} lg={8} sm={24} xs={24} key={`${cwe.id}_${index}`}>
           <Card className="cwe_card">

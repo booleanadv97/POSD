@@ -1,6 +1,6 @@
-import { Spin, Card, Row, Col, Space, Switch, Typography, message } from 'antd';
+import { Spin, Card, Row, Button, Col, Space, Switch, Typography, message } from 'antd';
 import React, { useEffect, useState } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { API } from "../../constant";
 import { getToken } from "../../helpers";
 const ViewPatternExample = () => {
@@ -9,12 +9,18 @@ const ViewPatternExample = () => {
   const location = useLocation();
   const { pattern_id, pattern_title } = location.state || {};
   const [ellipsis, setEllipsis] = useState(true);
+  const navigate = useNavigate();
   <Switch
       checked={ellipsis}
       onChange={() => {
         setEllipsis(!ellipsis);
       }}
     />
+
+  const sendFeedback = (pattern_example_id) => {
+    const data = { pattern_example_id: pattern_example_id};
+    navigate('/patterns/sendfeedback', { state: data });
+  };
 
   const fetchExamples = (async (id) => {
     setIsLoading(true);
@@ -61,6 +67,7 @@ const ViewPatternExample = () => {
               align="center"
             >
               <Typography.Paragraph ellipsis={ellipsis ? { rows: 4, expandable: true, symbol: 'more' } : false}>{pattern_example.attributes.description}</Typography.Paragraph>
+              <Button type="link" onClick={() => sendFeedback(pattern_example.id)}>Send feedback</Button>
             </Space>
           </Card>
         </Col>

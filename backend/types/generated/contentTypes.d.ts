@@ -863,6 +863,48 @@ export interface ApiCweWeaknessReportCweWeaknessReport
   };
 }
 
+export interface ApiFeedbackFeedback extends Schema.CollectionType {
+  collectionName: 'feedbacks';
+  info: {
+    singularName: 'feedback';
+    pluralName: 'feedbacks';
+    displayName: 'Feedback';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Attribute.Text;
+    users_permissions_user: Attribute.Relation<
+      'api::feedback.feedback',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    pattern_example: Attribute.Relation<
+      'api::feedback.feedback',
+      'oneToOne',
+      'api::pattern-example.pattern-example'
+    >;
+    rating: Attribute.Integer & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::feedback.feedback',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::feedback.feedback',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiGdprArticleGdprArticle extends Schema.CollectionType {
   collectionName: 'gdpr_articles';
   info: {
@@ -1001,6 +1043,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::cwe-weakness.cwe-weakness': ApiCweWeaknessCweWeakness;
       'api::cwe-weakness-report.cwe-weakness-report': ApiCweWeaknessReportCweWeaknessReport;
+      'api::feedback.feedback': ApiFeedbackFeedback;
       'api::gdpr-article.gdpr-article': ApiGdprArticleGdprArticle;
       'api::pattern.pattern': ApiPatternPattern;
       'api::pattern-example.pattern-example': ApiPatternExamplePatternExample;
