@@ -10,6 +10,7 @@ const Sidebar = () => {
   const menuItems = [
     ...(user ?  [{ label: 'Home', path: '/' }] : []),
     ...(user ?  [{ label: 'Patterns', path: '/patterns' }] : []),
+    ...(user ?  [{ label: 'Contexts', path: '/patterns/contexts' }] : []),
     ...(user ?  [{ label: 'CWEs', path: '/cwes' }] : []),
     ...(user ?  [{ label: 'GDPR Articles', path: '/gdprarticles' }] : []),
     ...(!user ?  [{ label: 'Login', path: '/signin' }] : []),

@@ -68,7 +68,7 @@ const CWEs = () => {
             >
               <Typography.Title level={3}>CWE-{cwe.attributes.cwe_id}</Typography.Title>
               <Typography.Paragraph ellipsis={ellipsis ? { rows: 4, expandable: true, symbol: 'more' } : false}>{cwe.attributes.description}</Typography.Paragraph>
-              <Button type="link" onClick={() => viewCWEPatterns(cwe.id, cwe.attributes.cwe_id)}>View examples</Button>
+              <Button type="link" onClick={() => viewCWEPatterns(cwe.id, cwe.attributes.cwe_id)}>View associated patterns</Button>
             </Space>
           </Card>
         </Col>

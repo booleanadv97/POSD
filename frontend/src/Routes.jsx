@@ -1,19 +1,25 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+
 import Profile from "./pages/Profile/Profile";
 import Home from "./pages/Home/Home";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
+
 import Patterns from "./pages/Patterns/Patterns"
+import ViewPatternExample from "./pages/Patterns/ViewPatternExample";
+import SendFeedback from "./pages/Patterns/SendFeedback";
+import ViewCWEsByPattern from "./pages/Patterns/ViewCWEsByPattern";
+import Contexts from "./pages/Patterns/Contexts";
+
 import CWEs from "./pages/CWEs/CWEs"
 import CWEPatterns from "./pages/CWEs/CWEPatterns"
-import ViewPatternExample from "./pages/Patterns/ViewPatternExample";
-import ViewCWEsByPattern from "./pages/Patterns/ViewCWEsByPattern";
+import ReportCWEWeakness from "./pages/CWEs/ReportCWEWeakness";
+
 import GDPRArticles from "./pages/GDPR Articles/GDPRArticles";
 import GDPRArticlePatterns from "./pages/GDPR Articles/ViewGDPRArticlePatterns";
 import GDPRArticleCWEs from "./pages/GDPR Articles/ViewGDPRArticleCWEs";
-import ReportCWEWeakness from "./pages/CWEs/ReportCWEWeakness";
-import SendFeedback from "./pages/Patterns/SendFeedback";
+
 import { getToken } from "./helpers";
 import { useAuthContext } from "./context/AuthContext";
 const AppRoutes = () => {
@@ -27,6 +33,7 @@ const AppRoutes = () => {
       <Route path="/patterns/viewpatternexample" element={getToken() ? <ViewPatternExample />: <Navigate to="/signin"/>} />
       <Route path="/patterns/viewcwesbypattern" element={getToken() ? <ViewCWEsByPattern />: <Navigate to="/signin"/>} />
       <Route path="/patterns/sendfeedback" element={getToken() ? <SendFeedback />: <Navigate to="/signin"/>} />
+      <Route path="/patterns/contexts" element={getToken() ? <Contexts />: <Navigate to="/signin"/>} />
       {/* CWE routes*/}
       <Route path="/cwes" element={getToken() ? <CWEs />: <Navigate to="/signin"/>} />
       <Route path="/viewcwepatterns" element={getToken() ? <CWEPatterns />: <Navigate to="/signin"/>} />

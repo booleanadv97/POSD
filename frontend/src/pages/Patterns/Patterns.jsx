@@ -14,7 +14,7 @@
           setEllipsis(!ellipsis);
         }}
       />
-
+  
     const viewPatternExample = (pattern_id, pattern_title) => {
       const data = { pattern_id: pattern_id, pattern_title: pattern_title };
       navigate('/patterns/viewpatternexample', { state: data });

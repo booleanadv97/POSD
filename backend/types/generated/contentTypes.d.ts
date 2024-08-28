@@ -969,6 +969,7 @@ export interface ApiPatternPattern extends Schema.CollectionType {
       'manyToMany',
       'api::gdpr-article.gdpr-article'
     >;
+    context: Attribute.Text & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

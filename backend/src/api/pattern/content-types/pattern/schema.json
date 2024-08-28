@@ -40,6 +40,10 @@
       "relation": "manyToMany",
       "target": "api::gdpr-article.gdpr-article",
       "mappedBy": "patterns"
+    },
+    "context": {
+      "type": "text",
+      "required": true
     }
   }
 }
