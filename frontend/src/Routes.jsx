@@ -20,6 +20,9 @@ import GDPRArticles from "./pages/GDPR Articles/GDPRArticles";
 import GDPRArticlePatterns from "./pages/GDPR Articles/ViewGDPRArticlePatterns";
 import GDPRArticleCWEs from "./pages/GDPR Articles/ViewGDPRArticleCWEs";
 
+import Strategies from "./pages/Strategies/Strategies";
+import ViewStrategyDetails from "./pages/Strategies/ViewStrategyDetails";
+
 import { getToken } from "./helpers";
 import { useAuthContext } from "./context/AuthContext";
 const AppRoutes = () => {
@@ -42,6 +45,9 @@ const AppRoutes = () => {
       <Route path="/gdprarticles" element={getToken() ? <GDPRArticles />: <Navigate to="/signin"/>} />
       <Route path="/gdprarticles/viewgdprarticlepatterns" element={getToken() ? <GDPRArticlePatterns />: <Navigate to="/signin"/>} />
       <Route path="/gdprarticles/viewgdprarticlecwes" element={getToken() ? <GDPRArticleCWEs />: <Navigate to="/signin"/>} />
+      {/* Strategies routes*/}
+      <Route path="/strategies" element={getToken() ? <Strategies />: <Navigate to="/signin"/>} />
+      <Route path="/strategies/viewstrategydetails" element={getToken() ? <ViewStrategyDetails />: <Navigate to="/signin"/>} />
       {/* User routes*/}
       <Route path="/profile" element={getToken() ? <Profile />: <Navigate to="/signin"/>} />
       <Route path="/signin" element={getToken() ? <Navigate to="/profile"/> : <SignIn/>} />

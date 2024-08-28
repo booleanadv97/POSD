@@ -44,6 +44,18 @@
     "context": {
       "type": "text",
       "required": true
+    },
+    "strategies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::strategy.strategy",
+      "mappedBy": "patterns"
+    },
+    "principles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::principle.principle",
+      "mappedBy": "patterns"
     }
   }
 }

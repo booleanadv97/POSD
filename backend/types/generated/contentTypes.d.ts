@@ -970,6 +970,16 @@ export interface ApiPatternPattern extends Schema.CollectionType {
       'api::gdpr-article.gdpr-article'
     >;
     context: Attribute.Text & Attribute.Required;
+    strategies: Attribute.Relation<
+      'api::pattern.pattern',
+      'manyToMany',
+      'api::strategy.strategy'
+    >;
+    principles: Attribute.Relation<
+      'api::pattern.pattern',
+      'manyToMany',
+      'api::principle.principle'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1024,6 +1034,76 @@ export interface ApiPatternExamplePatternExample extends Schema.CollectionType {
   };
 }
 
+export interface ApiPrinciplePrinciple extends Schema.CollectionType {
+  collectionName: 'principles';
+  info: {
+    singularName: 'principle';
+    pluralName: 'principles';
+    displayName: 'Principle';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    patterns: Attribute.Relation<
+      'api::principle.principle',
+      'manyToMany',
+      'api::pattern.pattern'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::principle.principle',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::principle.principle',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiStrategyStrategy extends Schema.CollectionType {
+  collectionName: 'strategies';
+  info: {
+    singularName: 'strategy';
+    pluralName: 'strategies';
+    displayName: 'Strategy';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    patterns: Attribute.Relation<
+      'api::strategy.strategy',
+      'manyToMany',
+      'api::pattern.pattern'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::strategy.strategy',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::strategy.strategy',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1048,6 +1128,8 @@ declare module '@strapi/types' {
       'api::gdpr-article.gdpr-article': ApiGdprArticleGdprArticle;
       'api::pattern.pattern': ApiPatternPattern;
       'api::pattern-example.pattern-example': ApiPatternExamplePatternExample;
+      'api::principle.principle': ApiPrinciplePrinciple;
+      'api::strategy.strategy': ApiStrategyStrategy;
     }
   }
 }
