@@ -1,0 +1,6 @@
+projectKey=posd
+serverUrl=http://localhost:9000
+serverVersion=10.6.0.92116
+dashboardUrl=http://localhost:9000/dashboard?id=posd
+ceTaskId=4da00535-0efc-4e2e-99c7-fbfe64d17262
+ceTaskUrl=http://localhost:9000/api/ce/task?id=4da00535-0efc-4e2e-99c7-fbfe64d17262

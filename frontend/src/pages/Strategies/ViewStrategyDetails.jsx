@@ -10,13 +10,7 @@ const ViewStrategyDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const { strategy_id, strategy_name } = location.state || {};
-  const [ellipsis, setEllipsis] = useState(true);
-  <Switch
-      checked={ellipsis}
-      onChange={() => {
-        setEllipsis(!ellipsis);
-      }}
-    />
+  
   const fetchDetails = (async (id) => {
     setIsLoading(true);
     try {

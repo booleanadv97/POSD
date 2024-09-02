@@ -23,6 +23,8 @@ import GDPRArticleCWEs from "./pages/GDPR Articles/ViewGDPRArticleCWEs";
 import Strategies from "./pages/Strategies/Strategies";
 import ViewStrategyDetails from "./pages/Strategies/ViewStrategyDetails";
 
+import MVCISO9241_210Phases from "./pages/ISO 9241-210 Phases/MVCISO9241-210Phases";
+
 import { getToken } from "./helpers";
 import { useAuthContext } from "./context/AuthContext";
 const AppRoutes = () => {
@@ -48,6 +50,8 @@ const AppRoutes = () => {
       {/* Strategies routes*/}
       <Route path="/strategies" element={getToken() ? <Strategies />: <Navigate to="/signin"/>} />
       <Route path="/strategies/viewstrategydetails" element={getToken() ? <ViewStrategyDetails />: <Navigate to="/signin"/>} />
+      {/* ISO 9241-210 Phases routes*/}
+      <Route path="/iso9241-210phases" element={getToken() ? <MVCISO9241_210Phases/>: <Navigate to="/signin"/>} />
       {/* User routes*/}
       <Route path="/profile" element={getToken() ? <Profile />: <Navigate to="/signin"/>} />
       <Route path="/signin" element={getToken() ? <Navigate to="/profile"/> : <SignIn/>} />

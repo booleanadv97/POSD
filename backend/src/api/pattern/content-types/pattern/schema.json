@@ -56,6 +56,24 @@
       "relation": "manyToMany",
       "target": "api::principle.principle",
       "mappedBy": "patterns"
+    },
+    "mvc_components": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::mvc-component.mvc-component",
+      "mappedBy": "patterns"
+    },
+    "iso_9241_210_phases": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::iso-9241-210-phase.iso-9241-210-phase",
+      "mappedBy": "patterns"
+    },
+    "owasps": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::owasp.owasp",
+      "mappedBy": "patterns"
     }
   }
 }

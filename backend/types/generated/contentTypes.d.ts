@@ -943,6 +943,117 @@ export interface ApiGdprArticleGdprArticle extends Schema.CollectionType {
   };
 }
 
+export interface ApiIso9241210PhaseIso9241210Phase
+  extends Schema.CollectionType {
+  collectionName: 'iso_9241_210_phases';
+  info: {
+    singularName: 'iso-9241-210-phase';
+    pluralName: 'iso-9241-210-phases';
+    displayName: 'ISO 9241-210 Phase';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    patterns: Attribute.Relation<
+      'api::iso-9241-210-phase.iso-9241-210-phase',
+      'manyToMany',
+      'api::pattern.pattern'
+    >;
+    number: Attribute.Float;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::iso-9241-210-phase.iso-9241-210-phase',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::iso-9241-210-phase.iso-9241-210-phase',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMvcComponentMvcComponent extends Schema.CollectionType {
+  collectionName: 'mvc_components';
+  info: {
+    singularName: 'mvc-component';
+    pluralName: 'mvc-components';
+    displayName: 'MVC Component';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    patterns: Attribute.Relation<
+      'api::mvc-component.mvc-component',
+      'manyToMany',
+      'api::pattern.pattern'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::mvc-component.mvc-component',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::mvc-component.mvc-component',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOwaspOwasp extends Schema.CollectionType {
+  collectionName: 'owasps';
+  info: {
+    singularName: 'owasp';
+    pluralName: 'owasps';
+    displayName: 'OWASP';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    patterns: Attribute.Relation<
+      'api::owasp.owasp',
+      'manyToMany',
+      'api::pattern.pattern'
+    >;
+    number: Attribute.String & Attribute.Required & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::owasp.owasp',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::owasp.owasp',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPatternPattern extends Schema.CollectionType {
   collectionName: 'patterns';
   info: {
@@ -979,6 +1090,21 @@ export interface ApiPatternPattern extends Schema.CollectionType {
       'api::pattern.pattern',
       'manyToMany',
       'api::principle.principle'
+    >;
+    mvc_components: Attribute.Relation<
+      'api::pattern.pattern',
+      'manyToMany',
+      'api::mvc-component.mvc-component'
+    >;
+    iso_9241_210_phases: Attribute.Relation<
+      'api::pattern.pattern',
+      'manyToMany',
+      'api::iso-9241-210-phase.iso-9241-210-phase'
+    >;
+    owasps: Attribute.Relation<
+      'api::pattern.pattern',
+      'manyToMany',
+      'api::owasp.owasp'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1126,6 +1252,9 @@ declare module '@strapi/types' {
       'api::cwe-weakness-report.cwe-weakness-report': ApiCweWeaknessReportCweWeaknessReport;
       'api::feedback.feedback': ApiFeedbackFeedback;
       'api::gdpr-article.gdpr-article': ApiGdprArticleGdprArticle;
+      'api::iso-9241-210-phase.iso-9241-210-phase': ApiIso9241210PhaseIso9241210Phase;
+      'api::mvc-component.mvc-component': ApiMvcComponentMvcComponent;
+      'api::owasp.owasp': ApiOwaspOwasp;
       'api::pattern.pattern': ApiPatternPattern;
       'api::pattern-example.pattern-example': ApiPatternExamplePatternExample;
       'api::principle.principle': ApiPrinciplePrinciple;

@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "owasps",
+  "info": {
+    "singularName": "owasp",
+    "pluralName": "owasps",
+    "displayName": "OWASP",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "patterns": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::pattern.pattern",
+      "inversedBy": "owasps"
+    },
+    "number": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}
