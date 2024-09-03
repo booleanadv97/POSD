@@ -25,6 +25,8 @@ import ViewStrategyDetails from "./pages/Strategies/ViewStrategyDetails";
 
 import MVCISO9241_210Phases from "./pages/ISO 9241-210 Phases/MVCISO9241-210Phases";
 
+import OWASPs from "./pages/OWASPs/OWASPs";
+
 import { getToken } from "./helpers";
 import { useAuthContext } from "./context/AuthContext";
 const AppRoutes = () => {
@@ -56,6 +58,8 @@ const AppRoutes = () => {
       <Route path="/profile" element={getToken() ? <Profile />: <Navigate to="/signin"/>} />
       <Route path="/signin" element={getToken() ? <Navigate to="/profile"/> : <SignIn/>} />
       <Route path="/signup" element={getToken() ? <Navigate to="/profile"/> : <SignUp/>} />
+      {/* OWASPs routes */}
+      <Route path="/owasps" element={getToken() ? <OWASPs />: <Navigate to="/signin"/>} />
     </Routes>
   );
 };
