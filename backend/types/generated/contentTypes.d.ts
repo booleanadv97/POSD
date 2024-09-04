@@ -1017,6 +1017,43 @@ export interface ApiMvcComponentMvcComponent extends Schema.CollectionType {
   };
 }
 
+export interface ApiNotificationNotification extends Schema.CollectionType {
+  collectionName: 'notifications';
+  info: {
+    singularName: 'notification';
+    pluralName: 'notifications';
+    displayName: 'Notification';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    message: Attribute.String & Attribute.Required;
+    users_permissions_user: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    read: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiOwaspOwasp extends Schema.CollectionType {
   collectionName: 'owasps';
   info: {
@@ -1254,6 +1291,7 @@ declare module '@strapi/types' {
       'api::gdpr-article.gdpr-article': ApiGdprArticleGdprArticle;
       'api::iso-9241-210-phase.iso-9241-210-phase': ApiIso9241210PhaseIso9241210Phase;
       'api::mvc-component.mvc-component': ApiMvcComponentMvcComponent;
+      'api::notification.notification': ApiNotificationNotification;
       'api::owasp.owasp': ApiOwaspOwasp;
       'api::pattern.pattern': ApiPatternPattern;
       'api::pattern-example.pattern-example': ApiPatternExamplePatternExample;

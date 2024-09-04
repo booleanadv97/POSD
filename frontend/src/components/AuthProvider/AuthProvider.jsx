@@ -8,7 +8,7 @@ import { getToken } from "../../helpers";
 const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState();
   const [isLoading, setIsLoading] = useState(false);
-
+  const [notifications, setNotifications] = useState([]);
   const authToken = getToken();
 
   const fetchLoggedInUser = async (token) => {
@@ -18,8 +18,8 @@ const AuthProvider = ({ children }) => {
         headers: { Authorization: `${BEARER} ${token}` },
       });
       const data = await response.json();
-
       setUserData(data);
+      setNotifications(data.notifications);
     } catch (error) {
       console.error(error);
       message.error("Error While Getting Logged In User Details");
@@ -32,6 +32,10 @@ const AuthProvider = ({ children }) => {
     setUserData(user);
   };
 
+  const updateNotifications = (notifications) => {
+    setNotifications(notifications);
+  };
+
   useEffect(() => {
     if (authToken) {
       fetchLoggedInUser(authToken);
@@ -40,7 +44,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user: userData, setUser: handleUser, isLoading }}
+      value={{ user: userData, setUser: handleUser, notifications: notifications, setNotifications: updateNotifications, isLoading }}
     >
       {children}
     </AuthContext.Provider>

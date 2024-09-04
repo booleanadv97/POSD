@@ -128,3 +128,17 @@ code {
   color: #ff0000;
   font-style: normal;
 }
+
+/*Notifications CSS*/
+.menu-header {
+  font-weight: bold;
+  background-color: #f0f0f0;  
+  color: #000; 
+  text-align: center;
+  border-bottom: 1px solid #d9d9d9;  
+  padding: 8px 0;
+}
+
+.ant-menu-item-divider {
+  margin: 0;  
+}
