@@ -1,11 +1,13 @@
-import { Spin, Card, Row, Col, Divider, List, Space, Typography, message } from 'antd';
+import { Spin, Card, Row, Col, Divider, List, Space, Typography, Input, message } from 'antd';
 import React, { useEffect, useState } from "react";
 import { API } from "../../constant";
 import { getToken } from "../../helpers";
 const OWASPs = () => {
   const [patterns, setPatterns] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(''); 
 
+  {/* Fetch Privacy Patterns associated OWASPs */}
   const fetchPatterns = async () => {
     setIsLoading(true);
     try {
@@ -34,6 +36,14 @@ const OWASPs = () => {
   if (isLoading) {
     return <Spin size="large" />;
   }
+
+  {/* Filtered Privacy Patterns associated OWASPs*/}
+  const filteredPrivacyPatterns = patterns.filter((pattern) =>
+    pattern.attributes.title.toLowerCase().includes(searchTerm.toLowerCase())  || 
+    pattern.attributes.owasps.data.some((owasp) => owasp.attributes.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+    pattern.attributes.owasps.data.some((owasp) => owasp.attributes.number.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
+
   return (
     <Row gutter={[32, 32]}>
       <Space
@@ -43,7 +53,20 @@ const OWASPs = () => {
             > 
       <Typography.Title level={3} > Privacy Patterns associated OWASPs</Typography.Title>
       </Space>
-      {patterns.map((pattern, index) => (
+
+      {/* Search input for filtering Privacy Patterns associated OWASPs */}
+      <Space direction="vertical" style={{ width: '100%', marginLeft: '16px' }}>
+        <Input
+          placeholder="Search by Privacy Pattern title, associated OWASP number or title"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          allowClear
+          size="large"
+        />
+      </Space>
+
+      {/* Render filtered Privacy Patterns associated OWASPs */}
+      {filteredPrivacyPatterns.map((pattern, index) => (
         <Col md={8} lg={8} sm={24} xs={24} key={`${pattern.id}_${index}`}>
           <Card className="pattern_card">
             <Divider orientation="left">Pattern</Divider>

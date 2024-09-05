@@ -11,6 +11,7 @@ const ViewStrategyDetails = () => {
   const location = useLocation();
   const { strategy_id, strategy_name } = location.state || {};
   
+  {/* Fetch Strategy Details */}
   const fetchDetails = (async (id) => {
     setIsLoading(true);
     try {
@@ -44,13 +45,17 @@ const ViewStrategyDetails = () => {
   if (isLoading) {
     return <Spin size="large" />;
   }
+
   return (
     <Row gutter={[32, 32]}>
-         <Space
-                className="pattern_card_space"
-                direction="vertical"
-                align="center"
-                > <Typography.Title level={3}>{strategy_name} strategy details</Typography.Title> </Space>
+      <Space
+        className="pattern_card_space"
+        direction="vertical"
+        align="center"
+      > 
+        <Typography.Title level={3}>{strategy_name} strategy details </Typography.Title> 
+      </Space>
+    {/* Render Strategy Details */}
     <Col span={6}> 
         <Divider orientation="left">Patterns</Divider>
         <List

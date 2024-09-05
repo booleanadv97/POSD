@@ -21,13 +21,11 @@ import { setToken } from "../../helpers";
 const SignIn = () => {
   const { isDesktopView } = useScreenSize();
   const navigate = useNavigate();
-
   const { setUser } = useAuthContext();
-
   const [isLoading, setIsLoading] = useState(false);
-
   const [error, setError] = useState("");
 
+  {/* Sends authentication request to backend after user submits the credentials */}
   const onFinish = async (values) => {
     setIsLoading(true);
     try {
@@ -47,7 +45,7 @@ const SignIn = () => {
       if (data?.error) {
         throw data?.error;
       } else {
-        // set the token
+        // set JWT Token
         setToken(data.jwt);
 
         // set the user
@@ -69,6 +67,7 @@ const SignIn = () => {
     <Fragment>
       <Row align="middle">
         <Col span={isDesktopView ? 8 : 24} offset={isDesktopView ? 8 : 0}>
+          {/* Render SignIn Form */}
           <Card title="SignIn">
             {error ? (
               <Alert

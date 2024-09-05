@@ -12,6 +12,8 @@ const SendFeedback = () => {
   const { TextArea } = Input; 
   const location = useLocation();
   const { pattern_example_id } = location.state || {};
+
+  {/* Feedback save to backend using POST request */}
   const handleSubmit = async (data) => {
     data.users_permissions_user = user?.id;
     data.pattern_example = pattern_example_id;
@@ -41,9 +43,11 @@ const SendFeedback = () => {
   if (loading) {
     return <Spin size="large" />;
   }
+
   return (
     <Card className="profile_page_card">
          <Typography.Title level={3}>Submit your feedback</Typography.Title>
+      {/* Render Feedback form*/}
       <Form
         layout="vertical"
         onFinish={handleSubmit}

@@ -1,4 +1,4 @@
-import { Spin, Card, Row, Col, Space, Switch, Typography, message } from 'antd';
+import { Spin, Card, Row, Col, Space, Switch, Typography, message, Input } from 'antd';
 import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import { API } from "../../constant";
@@ -9,13 +9,9 @@ const ViewGDPRArticlePatterns = () => {
   const location = useLocation();
   const { article_id, article_title } = location.state || {};
   const [ellipsis, setEllipsis] = useState(true);
-  <Switch
-      checked={ellipsis}
-      onChange={() => {
-        setEllipsis(!ellipsis);
-      }}
-    />
+  const [searchTerm, setSearchTerm] = useState(''); 
 
+  {/* Fetch GDPR Article associated Privacy Patterns from the backend */}
   const fetchPatterns = (async (id) => {
     setIsLoading(true);
     try {
@@ -45,14 +41,47 @@ const ViewGDPRArticlePatterns = () => {
   if (isLoading) {
     return <Spin size="large" />;
   }
+
+  {/* Filtered GDPR Article associated Privacy Patterns*/}
+  const filteredGDPRArticlePatterns = patterns.filter((pattern) =>
+    pattern.attributes.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    pattern.attributes.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <Row gutter={[32, 32]}>
     <Space
-              className="pattern_card_space"
-              direction="vertical"
-              align="center"
-            > <Typography.Title level={3}>{article_title} associated patterns</Typography.Title> </Space>
-      {patterns.map((pattern, index) => (
+      className="pattern_card_space"
+      direction="vertical"
+      align="center"
+    > 
+      <Typography.Title level={3}>{article_title} associated Privacy Patterns</Typography.Title> 
+    </Space>
+
+    {/* Search input for filtering GDPR Article associated Privacy Patterns */}
+    <Space direction="vertical" style={{ width: '100%', marginLeft: '16px' }}>
+        <Input
+          placeholder="Search by Privacy Pattern title or description"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          allowClear
+          size="large"
+        />
+      </Space>
+
+      {/* Switch to toggle ellipsis */}
+      <Space direction="vertical" style={{width: '100%', marginLeft: '16px' }}>
+        <div> 
+          <Switch
+            checked={ellipsis}
+            onChange={() => setEllipsis(!ellipsis)}
+          />
+        <Typography.Text style={{marginLeft: '16px'}}>Toggle text truncation</Typography.Text>
+        </div>
+      </Space>
+      
+      {/* Render filtered GDPR Article associated Privacy Patterns*/}
+      {filteredGDPRArticlePatterns.map((pattern, index) => (
         <Col md={8} lg={8} sm={24} xs={24} key={`${pattern.id}_${index}`}>
           <Card className="pattern_card">
             <Space

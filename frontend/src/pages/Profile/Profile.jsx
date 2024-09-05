@@ -8,6 +8,8 @@ import { getToken } from "../../helpers";
 const Profile = () => {
   const [loading, setLoading] = useState(false);
   const { user, isLoading, setUser } = useAuthContext();
+
+  {/* Updates user profile by PUT request to backend */}
   const handleProfileUpdate = async (data) => {
     setLoading(true);
     try {
@@ -34,8 +36,10 @@ const Profile = () => {
   if (isLoading) {
     return <Spin size="large" />;
   }
+
   return (
     <Card className="profile_page_card">
+    {/* Render User Profile Form */}
       <Form
         layout="vertical"
         initialValues={{

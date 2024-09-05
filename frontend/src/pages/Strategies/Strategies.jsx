@@ -1,19 +1,15 @@
-import { Spin, Card, Row, Col, Space, Button, Switch, Typography, message } from 'antd';
+import { Spin, Card, Row, Col, Space, Button, Typography, message } from 'antd';
 import React, { useEffect, useState } from "react";
 import { API } from "../../constant";
 import { useNavigate } from "react-router-dom";
 import { getToken } from "../../helpers";
+
 const Strategies = () => {
   const [strategies, setStrategies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [ellipsis, setEllipsis] = useState(true);
   const navigate = useNavigate();
-  <Switch
-      checked={ellipsis}
-      onChange={() => {
-        setEllipsis(!ellipsis);
-      }}
-    />
+ 
+  {/* Fetch Strategies from Backend */}
   const fetchStrategies = async () => {
     setIsLoading(true);
     try {
@@ -34,6 +30,7 @@ const Strategies = () => {
     }
   };
 
+  {/* Redirect to ViewStrategyDetails */}
   const viewStrategyDetails = (strategy_id, strategy_name) => {
     const data = { strategy_id: strategy_id, strategy_name: strategy_name };
     navigate('/strategies/viewstrategydetails', { state: data });
@@ -46,6 +43,7 @@ const Strategies = () => {
   if (isLoading) {
     return <Spin size="large" />;
   }
+
   return (
     <Row gutter={[32, 32]}>
         <Space
@@ -55,6 +53,7 @@ const Strategies = () => {
             > 
                 <Typography.Title level={3}>Strategies</Typography.Title>
         </Space>  
+        {/* Render Strategies */}
         {strategies.map((strategy, index) => (
             <Col md={8} lg={8} sm={24} xs={24} key={`${strategy.id}_${index}`}>
             <Card className="pattern_card">

@@ -1,30 +1,29 @@
-import { Spin, Card, Row, Col, Button, Space, Switch, Typography, message } from 'antd';
+import { Spin, Card, Row, Col, Button, Space, Switch, Typography, Input, message } from 'antd';
 import React, { useEffect, useState } from "react";
 import { API } from "../../constant";
 import { useNavigate } from "react-router-dom";
 import { getToken } from "../../helpers";
+
 const GDPRArticles = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [ellipsis, setEllipsis] = useState(true);
+  const [searchTerm, setSearchTerm] = useState(''); 
   const navigate = useNavigate();
-  <Switch
-      checked={ellipsis}
-      onChange={() => {
-        setEllipsis(!ellipsis);
-      }}
-    />
 
+  {/* Redirect to ViewGDPRArticlePatterns */}
   const viewGDPRArticlePatterns = (article_id, article_title) => {
     const data = { article_id: article_id, article_title: article_title };
     navigate('/gdprarticles/viewgdprarticlepatterns', { state: data });
   };
 
+  {/* Redirect to ViewGDPRArticleCWEs */}
   const viewGDPRArticleCWEs = (article_id, article_title) => {
     const data = { article_id: article_id, article_title: article_title };
     navigate('/gdprarticles/viewgdprarticlecwes', { state: data });
   };
 
+  {/* Fetch GDPR Articles from Backend */}
   const fetchArticles = async () => {
     setIsLoading(true);
     try {
@@ -52,9 +51,43 @@ const GDPRArticles = () => {
   if (isLoading) {
     return <Spin size="large" />;
   }
+
+  {/* Filtered GDPR Articles*/}
+  const filteredGDPRArticles = articles.filter((pattern) =>
+    pattern.attributes.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    ("Article "+ pattern.attributes.article_number.toString()).toLowerCase().includes(searchTerm.toLowerCase()) ||
+    pattern.attributes.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <Row gutter={[32, 32]}>
-      {articles.map((article, index) => (
+      <Space direction="vertical" align="center" style={{ width: '100%'}}> 
+        <Typography.Title level={3}>GDPR Articles</Typography.Title>
+      </Space>
+       {/* Search input for filtering GDPR Articles */}
+       <Space direction="vertical" style={{ width: '100%', marginLeft: '16px' }}>
+        <Input
+          placeholder="Search by GDPR Article title, number or description"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          allowClear
+          size="large"
+        />
+      </Space>
+
+      {/* Switch to toggle ellipsis */}
+      <Space direction="vertical" style={{width: '100%', marginLeft: '16px' }}>
+        <div> 
+          <Switch
+            checked={ellipsis}
+            onChange={() => setEllipsis(!ellipsis)}
+          />
+        <Typography.Text style={{marginLeft: '16px'}}>Toggle text truncation</Typography.Text>
+        </div>
+      </Space>
+
+      {/* Render filtered GDPR Articles */}
+      {filteredGDPRArticles.map((article, index) => (
         <Col md={8} lg={8} sm={24} xs={24} key={`${article.id}_${index}`}>
           <Card className="pattern_card">
             <Space

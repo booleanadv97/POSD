@@ -21,13 +21,11 @@ import { setToken } from "../../helpers";
 const SignUp = () => {
   const { isDesktopView } = useScreenSize();
   const navigate = useNavigate();
-
   const { setUser } = useAuthContext();
-
   const [isLoading, setIsLoading] = useState(false);
-
   const [error, setError] = useState("");
 
+  {/* Sends registration request to backend */}
   const onFinish = async (values) => {
     setIsLoading(true);
     try {
@@ -65,6 +63,7 @@ const SignUp = () => {
     <Fragment>
       <Row align="middle">
         <Col span={isDesktopView ? 8 : 24} offset={isDesktopView ? 8 : 0}>
+          {/* Render SignUp Form */}
           <Card title="SignUp">
             {error ? (
               <Alert

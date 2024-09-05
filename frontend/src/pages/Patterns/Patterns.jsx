@@ -1,30 +1,29 @@
-  import { Spin, Card, Row, Col, Space, Button, Switch, Typography, message } from 'antd';
+  import { Spin, Card, Row, Col, Space, Button, Switch, Typography, Input, message } from 'antd';
   import React, { useEffect, useState } from "react";
   import { API } from "../../constant";
   import { useNavigate } from "react-router-dom";
   import { getToken } from "../../helpers";
+
   const Patterns = () => {
     const [patterns, setPatterns] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [ellipsis, setEllipsis] = useState(true);
+    const [searchTerm, setSearchTerm] = useState(''); 
     const navigate = useNavigate();
-    <Switch
-        checked={ellipsis}
-        onChange={() => {
-          setEllipsis(!ellipsis);
-        }}
-      />
-  
+   
+    {/* Redirects to ViewPatternExample */}
     const viewPatternExample = (pattern_id, pattern_title) => {
       const data = { pattern_id: pattern_id, pattern_title: pattern_title };
       navigate('/patterns/viewpatternexample', { state: data });
     };
 
+    {/* Redirects to ViewCWEsByPattern */}
     const viewCWEsByPattern = (pattern_id, pattern_title) => {
       const data = { pattern_id: pattern_id, pattern_title: pattern_title };
       navigate('/patterns/viewcwesbypattern', { state: data });
     };
 
+    {/* Fetch Privacy Patterns from backend */}
     const fetchPatterns = async () => {
       setIsLoading(true);
       try {
@@ -52,9 +51,39 @@
     if (isLoading) {
       return <Spin size="large" />;
     }
+    
+  {/* Filtered Privacy Patterns */}
+  const filteredPrivacyPatterns = patterns.filter((pattern) =>
+    pattern.attributes.title.toLowerCase().includes(searchTerm.toLowerCase())  || 
+    pattern.attributes.description.toLowerCase().includes(searchTerm.toLowerCase()) 
+  );
+
     return (
       <Row gutter={[32, 32]}>
-        {patterns.map((pattern, index) => (
+        {/* Search input for filtering Privacy Patterns */}
+        <Space direction="vertical" style={{ width: '100%', marginLeft: '16px' }}>
+          <Input
+            placeholder="Search by Privacy Pattern title or description"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            allowClear
+            size="large"
+          />
+        </Space>
+
+        {/* Switch to toggle ellipsis */}
+        <Space direction="vertical" style={{width: '100%', marginLeft: '16px' }}>
+          <div> 
+            <Switch
+              checked={ellipsis}
+              onChange={() => setEllipsis(!ellipsis)}
+            />
+          <Typography.Text style={{marginLeft: '16px'}}>Toggle text truncation</Typography.Text>
+          </div>
+        </Space>
+
+        {/* Render filtered Privacy Patterns */}
+        {filteredPrivacyPatterns.map((pattern, index) => (
           <Col md={8} lg={8} sm={24} xs={24} key={`${pattern.id}_${index}`}>
             <Card className="pattern_card">
               <Space

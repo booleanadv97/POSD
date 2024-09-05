@@ -1,21 +1,18 @@
-import { Spin, Card, Row, Col, Space, Switch, Typography, message } from 'antd';
+import { Spin, Card, Row, Col, Space, Switch, Typography, Input, message } from 'antd';
 import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import { API } from "../../constant";
 import { getToken } from "../../helpers";
+
 const ViewGDPRArticleCWEs = () => {
   const [CWEs, setCWEs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const { article_id, article_title } = location.state || {};
   const [ellipsis, setEllipsis] = useState(true);
-  <Switch
-      checked={ellipsis}
-      onChange={() => {
-        setEllipsis(!ellipsis);
-      }}
-    />
-
+  const [searchTerm, setSearchTerm] = useState(''); 
+  
+  {/* Fetch GDPR Article associated CWE Weaknesses */}
   const fetchCWEs = (async (id) => {
     setIsLoading(true);
     try {
@@ -45,14 +42,47 @@ const ViewGDPRArticleCWEs = () => {
   if (isLoading) {
     return <Spin size="large" />;
   }
+
+  {/* Filtered GDPR Article associated CWE Weaknesses */}
+  const filteredGDPRArticleCWEs = CWEs.filter((CWE) =>
+    ("CWE-"+ CWE.attributes.cwe_id.toString()).toLowerCase().includes(searchTerm.toLowerCase()) ||
+    CWE.attributes.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <Row gutter={[32, 32]}>
     <Space
-              className="pattern_card_space"
-              direction="vertical"
-              align="center"
-            > <Typography.Title level={3}>{article_title} associated CWEs</Typography.Title> </Space>
-      {CWEs.map((cwe, index) => (
+      className="pattern_card_space"
+      direction="vertical"
+      align="center"
+    > 
+      <Typography.Title level={3}>{article_title} associated CWE Weaknesses</Typography.Title> 
+    </Space>
+
+    {/* Search input for filtering GDPR Article associated CWE Weaknesses */}
+    <Space direction="vertical" style={{ width: '100%', marginLeft: '16px' }}>
+        <Input
+          placeholder="Search by CWE Weakness number or description"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          allowClear
+          size="large"
+        />
+      </Space>
+
+      {/* Switch to toggle ellipsis */}
+      <Space direction="vertical" style={{width: '100%', marginLeft: '16px' }}>
+        <div> 
+          <Switch
+            checked={ellipsis}
+            onChange={() => setEllipsis(!ellipsis)}
+          />
+        <Typography.Text style={{marginLeft: '16px'}}>Toggle text truncation</Typography.Text>
+        </div>
+      </Space>
+
+      {/* Render filtered GDPR Article associated CWE Weaknesses */}
+      {filteredGDPRArticleCWEs.map((cwe, index) => (
         <Col md={8} lg={8} sm={24} xs={24} key={`${cwe.id}_${index}`}>
           <Card className="pattern_card">
             <Space
