@@ -9,7 +9,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const { user, isLoading, setUser } = useAuthContext();
 
-  {/* Updates user profile by PUT request to backend */}
+  /* Updates user profile by PUT request to backend */
   const handleProfileUpdate = async (data) => {
     setLoading(true);
     try {

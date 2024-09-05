@@ -25,7 +25,7 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  {/* Sends registration request to backend */}
+  /* Sends registration request to backend */
   const onFinish = async (values) => {
     setIsLoading(true);
     try {

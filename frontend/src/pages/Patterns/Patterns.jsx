@@ -11,19 +11,19 @@
     const [searchTerm, setSearchTerm] = useState(''); 
     const navigate = useNavigate();
    
-    {/* Redirects to ViewPatternExample */}
+    /* Redirects to ViewPatternExample */
     const viewPatternExample = (pattern_id, pattern_title) => {
       const data = { pattern_id: pattern_id, pattern_title: pattern_title };
       navigate('/patterns/viewpatternexample', { state: data });
     };
 
-    {/* Redirects to ViewCWEsByPattern */}
+    /* Redirects to ViewCWEsByPattern */
     const viewCWEsByPattern = (pattern_id, pattern_title) => {
       const data = { pattern_id: pattern_id, pattern_title: pattern_title };
       navigate('/patterns/viewcwesbypattern', { state: data });
     };
 
-    {/* Fetch Privacy Patterns from backend */}
+    /* Fetch Privacy Patterns from backend */
     const fetchPatterns = async () => {
       setIsLoading(true);
       try {
@@ -52,7 +52,7 @@
       return <Spin size="large" />;
     }
     
-  {/* Filtered Privacy Patterns */}
+  /* Filtered Privacy Patterns */
   const filteredPrivacyPatterns = patterns.filter((pattern) =>
     pattern.attributes.title.toLowerCase().includes(searchTerm.toLowerCase())  || 
     pattern.attributes.description.toLowerCase().includes(searchTerm.toLowerCase()) 

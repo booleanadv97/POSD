@@ -25,7 +25,7 @@ const SignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  {/* Sends authentication request to backend after user submits the credentials */}
+  /* Sends authentication request to backend after user submits the credentials */
   const onFinish = async (values) => {
     setIsLoading(true);
     try {

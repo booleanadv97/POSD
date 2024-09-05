@@ -1,12 +1,15 @@
 import {
   Row,
   Typography,
+  Spin
 } from "antd";
 import React from "react";
 import { useAuthContext } from "../../context/AuthContext";
 
 const Home = () => {
-  const {user} = useAuthContext();
+  const { user } = useAuthContext();
+  if(!user)
+    return <Spin size="large" />;
   return (
     <>
     <Row align="center" gutter={[32, 32]}>

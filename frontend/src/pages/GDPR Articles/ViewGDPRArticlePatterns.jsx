@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import { API } from "../../constant";
 import { getToken } from "../../helpers";
+
 const ViewGDPRArticlePatterns = () => {
   const [patterns, setPatterns] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -11,7 +12,7 @@ const ViewGDPRArticlePatterns = () => {
   const [ellipsis, setEllipsis] = useState(true);
   const [searchTerm, setSearchTerm] = useState(''); 
 
-  {/* Fetch GDPR Article associated Privacy Patterns from the backend */}
+  /* Fetch GDPR Article associated Privacy Patterns from the backend */
   const fetchPatterns = (async (id) => {
     setIsLoading(true);
     try {
@@ -42,7 +43,7 @@ const ViewGDPRArticlePatterns = () => {
     return <Spin size="large" />;
   }
 
-  {/* Filtered GDPR Article associated Privacy Patterns*/}
+  /* Filtered GDPR Article associated Privacy Patterns*/
   const filteredGDPRArticlePatterns = patterns.filter((pattern) =>
     pattern.attributes.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     pattern.attributes.description.toLowerCase().includes(searchTerm.toLowerCase())

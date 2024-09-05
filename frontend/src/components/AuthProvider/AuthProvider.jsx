@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";  
 import { AuthContext } from "../../context/AuthContext";
 import { message } from "antd";
 import { API, BEARER } from "../../constant";
@@ -50,5 +51,10 @@ const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 
 export default AuthProvider;

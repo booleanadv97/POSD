@@ -11,19 +11,19 @@ const GDPRArticles = () => {
   const [searchTerm, setSearchTerm] = useState(''); 
   const navigate = useNavigate();
 
-  {/* Redirect to ViewGDPRArticlePatterns */}
+  /* Redirect to ViewGDPRArticlePatterns */
   const viewGDPRArticlePatterns = (article_id, article_title) => {
     const data = { article_id: article_id, article_title: article_title };
     navigate('/gdprarticles/viewgdprarticlepatterns', { state: data });
   };
 
-  {/* Redirect to ViewGDPRArticleCWEs */}
+  /* Redirect to ViewGDPRArticleCWEs */
   const viewGDPRArticleCWEs = (article_id, article_title) => {
     const data = { article_id: article_id, article_title: article_title };
     navigate('/gdprarticles/viewgdprarticlecwes', { state: data });
   };
 
-  {/* Fetch GDPR Articles from Backend */}
+  /* Fetch GDPR Articles from Backend */
   const fetchArticles = async () => {
     setIsLoading(true);
     try {
@@ -52,7 +52,7 @@ const GDPRArticles = () => {
     return <Spin size="large" />;
   }
 
-  {/* Filtered GDPR Articles*/}
+  /* Filtered GDPR Articles*/
   const filteredGDPRArticles = articles.filter((pattern) =>
     pattern.attributes.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     ("Article "+ pattern.attributes.article_number.toString()).toLowerCase().includes(searchTerm.toLowerCase()) ||

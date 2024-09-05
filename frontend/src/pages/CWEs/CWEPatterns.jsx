@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import { API } from "../../constant";
 import { getToken } from "../../helpers";
+
 const ViewCWEPatterns = () => {
   const [CWEPatterns, setCWEPatterns] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -11,7 +12,7 @@ const ViewCWEPatterns = () => {
   const [ellipsis, setEllipsis] = useState(true);
   const [searchTerm, setSearchTerm] = useState(''); 
  
-  {/* Fetch CWE Weakness associated privacy patterns from backend */}
+  /* Fetch CWE Weakness associated privacy patterns from backend */
   const fetchCWEPatterns = (async (cwe_id) => {
     setIsLoading(true);
     try {
@@ -43,7 +44,7 @@ const ViewCWEPatterns = () => {
     return <Spin size="large" />;
   }
 
-  {/* Filtered CWE Weakness associated Privacy Patterns */}
+  /* Filtered CWE Weakness associated Privacy Patterns */
   const filteredCWEPatterns = CWEPatterns.filter((pattern) =>
     pattern.attributes.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     pattern.attributes.description.toLowerCase().includes(searchTerm.toLowerCase())

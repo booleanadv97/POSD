@@ -1,4 +1,4 @@
-import { Spin, Card, Row, Col, Space, Button, Switch, Typography, Tooltip, Input, message } from 'antd';
+import { Spin, Card, Row, Col, Space, Button, Switch, Typography, Input, message } from 'antd';
 import React, { useEffect, useState } from "react";
 import { API } from "../../constant";
 import { useNavigate } from "react-router-dom";
@@ -11,18 +11,18 @@ const CWEs = () => {
   const [searchTerm, setSearchTerm] = useState(''); 
   const navigate = useNavigate();
 
-  {/* Redirect to ReportCWEWeakness */}
+  /* Redirect to ReportCWEWeakness */
   const reportCWEWeakness = () => {
     navigate('/reportcweweakness');
   };
 
-  {/* Redirect to ViewCWEPatterns */}
+  /* Redirect to ViewCWEPatterns */
   const viewCWEPatterns = (id, cwe_id) => {
     const data = { id: id, cwe_id: cwe_id };
     navigate('/viewcwepatterns', { state: data });
   };
 
-  {/* Fetch CWEs from backend */}
+  /* Fetch CWEs from backend */
   const fetchCWEs = async () => {
     setIsLoading(true);
     try {
@@ -51,7 +51,7 @@ const CWEs = () => {
     return <Spin size="large" />;
   }
  
-  {/* Filtered CWEs */}
+  /* Filtered CWEs */
   const filteredCWEs = CWEs.filter((cwe) =>
     cwe.attributes.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
     ("CWE-"+cwe.attributes.cwe_id.toString()).toLowerCase().includes(searchTerm.toLowerCase())

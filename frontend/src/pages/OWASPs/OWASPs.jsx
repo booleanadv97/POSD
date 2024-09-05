@@ -7,7 +7,7 @@ const OWASPs = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState(''); 
 
-  {/* Fetch Privacy Patterns associated OWASPs */}
+  /* Fetch Privacy Patterns associated OWASPs */
   const fetchPatterns = async () => {
     setIsLoading(true);
     try {
@@ -37,7 +37,7 @@ const OWASPs = () => {
     return <Spin size="large" />;
   }
 
-  {/* Filtered Privacy Patterns associated OWASPs*/}
+  /* Filtered Privacy Patterns associated OWASPs*/
   const filteredPrivacyPatterns = patterns.filter((pattern) =>
     pattern.attributes.title.toLowerCase().includes(searchTerm.toLowerCase())  || 
     pattern.attributes.owasps.data.some((owasp) => owasp.attributes.name.toLowerCase().includes(searchTerm.toLowerCase())) ||

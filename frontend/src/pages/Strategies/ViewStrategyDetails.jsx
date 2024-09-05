@@ -1,4 +1,4 @@
-import { Spin, Card, Divider, Row, List, Col, Space, Switch, Typography, message } from 'antd';
+import { Spin, Divider, Row, List, Col, Space, Typography, message } from 'antd';
 import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import { API } from "../../constant";
@@ -11,7 +11,7 @@ const ViewStrategyDetails = () => {
   const location = useLocation();
   const { strategy_id, strategy_name } = location.state || {};
   
-  {/* Fetch Strategy Details */}
+  /* Fetch Strategy Details */
   const fetchDetails = (async (id) => {
     setIsLoading(true);
     try {

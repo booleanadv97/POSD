@@ -8,7 +8,7 @@ const Contexts = () => {
   const [ellipsis, setEllipsis] = useState(true); 
   const [searchTerm, setSearchTerm] = useState(''); 
   
-  {/* Fetch Privacy Patterns Contexts from backend */}
+  /* Fetch Privacy Patterns Contexts from backend */
   const fetchPatterns = async () => {
     setIsLoading(true);
     try {
@@ -37,7 +37,7 @@ const Contexts = () => {
     return <Spin size="large" />;
   }
 
-  {/* Filtered Privacy Patterns Contexts*/}
+  /* Filtered Privacy Patterns Contexts*/
   const filteredPrivacyPatterns = patterns.filter((pattern) =>
     pattern.attributes.title.toLowerCase().includes(searchTerm.toLowerCase())  || 
     pattern.attributes.context.toLowerCase().includes(searchTerm.toLowerCase()) 

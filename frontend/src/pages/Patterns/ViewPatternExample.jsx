@@ -12,13 +12,13 @@ const ViewPatternExample = () => {
   const [searchTerm, setSearchTerm] = useState(''); 
   const navigate = useNavigate();
 
-  {/* Redirect to SendFeedback */}
+  /* Redirect to SendFeedback */
   const sendFeedback = (pattern_example_id) => {
     const data = { pattern_example_id: pattern_example_id};
     navigate('/patterns/sendfeedback', { state: data });
   };
 
-  {/* Fetch Privacy Pattern Examples */}
+  /* Fetch Privacy Pattern Examples */
   const fetchExamples = (async (id) => {
     setIsLoading(true);
     try {
@@ -49,7 +49,7 @@ const ViewPatternExample = () => {
     return <Spin size="large" />;
   }
 
-  {/* Filtered Privacy Pattern Examples */}
+  /* Filtered Privacy Pattern Examples */
   const filteredPrivacyPatternExamples = examples.filter((pattern_example) =>
     pattern_example.attributes.description.toLowerCase().includes(searchTerm.toLowerCase()) 
   );
@@ -87,7 +87,7 @@ const ViewPatternExample = () => {
       </Space>
 
       {/* Render Privacy Pattern Examples */}
-      {examples.map((pattern_example, index) => (
+      {filteredPrivacyPatternExamples.map((pattern_example, index) => (
         <Col md={8} lg={8} sm={24} xs={24} key={`${pattern_example.id}_${index}`}>
           <Card className="pattern_card">
             <Space

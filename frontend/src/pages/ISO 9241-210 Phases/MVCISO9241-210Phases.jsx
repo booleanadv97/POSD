@@ -8,7 +8,7 @@ const MVCISO9241_210Phases = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState(''); 
 
-  {/* Fetch populated Privacy Patterns from backend */}
+  /* Fetch populated Privacy Patterns from backend */
   const fetchPatterns = async () => {
     setIsLoading(true);
     try {
@@ -37,7 +37,7 @@ const MVCISO9241_210Phases = () => {
     return <Spin size="large" />;
   }
 
-  {/* Filtered populated Privacy Patterns */}
+  /* Filtered populated Privacy Patterns */
   const filteredPrivacyPatterns = patterns.filter((pattern) =>
     pattern.attributes.title.toLowerCase().includes(searchTerm.toLowerCase())  || 
     pattern.attributes.iso_9241_210_phases.data.some((phase) => phase.attributes.name.toLowerCase().includes(searchTerm.toLowerCase())) ||

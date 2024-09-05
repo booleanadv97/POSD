@@ -1,4 +1,4 @@
-import { Dropdown, Image } from "antd";
+import { Dropdown, Image, Button } from "antd";
 import React, { useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
 import { useEffect } from "react";
@@ -41,7 +41,7 @@ const UserMenu = () => {
             }}
             trigger={['click']}
         >
-            <a onClick={(e) => e.preventDefault()}>
+            <Button ghost style={{ border:"none" }} onClick={(e) => e.preventDefault()}>
             <Image  
                 className="social_image"
                 preview={false}
@@ -50,7 +50,7 @@ const UserMenu = () => {
                     `${AVATAR_API}?name=${user.username}&background=1890ff&color=fff`
                 }
                 />
-            </a>
+            </Button>
         </Dropdown>
     )
 };

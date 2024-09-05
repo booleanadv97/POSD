@@ -1,4 +1,4 @@
-import { Spin, Dropdown } from "antd";
+import { Spin, Dropdown, Button } from "antd";
 import React, { useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
 import { IoMdNotifications, IoIosNotificationsOutline } from "react-icons/io";
@@ -86,9 +86,9 @@ const Notifications = () => {
         }}
         trigger={['click']}
     >
-        <a onClick={(e) => e.preventDefault()}>
-        { hasUnread ? ( <IoMdNotifications size="28"/>) : ( <IoIosNotificationsOutline size="28"/>) }
-        </a>
+        <Button ghost style={{ border: "none" }} onClick={(e) => e.preventDefault()}>
+        { hasUnread ? ( <IoMdNotifications onClick={(e) => e.preventDefault()} size="28"/>) : ( <IoIosNotificationsOutline size="28"/>) }
+        </Button>
     </Dropdown>
   )};
 

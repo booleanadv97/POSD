@@ -9,7 +9,7 @@ const Strategies = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
  
-  {/* Fetch Strategies from Backend */}
+  /* Fetch Strategies from Backend */
   const fetchStrategies = async () => {
     setIsLoading(true);
     try {
@@ -30,7 +30,7 @@ const Strategies = () => {
     }
   };
 
-  {/* Redirect to ViewStrategyDetails */}
+  /* Redirect to ViewStrategyDetails */
   const viewStrategyDetails = (strategy_id, strategy_name) => {
     const data = { strategy_id: strategy_id, strategy_name: strategy_name };
     navigate('/strategies/viewstrategydetails', { state: data });

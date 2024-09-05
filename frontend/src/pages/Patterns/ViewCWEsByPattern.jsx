@@ -11,7 +11,7 @@ const ViewCWEsByPattern = () => {
   const [ellipsis, setEllipsis] = useState(true);
   const [searchTerm, setSearchTerm] = useState(''); 
    
-  {/* Fetch Privacy Pattern associated CWE Weaknesses */}
+  /* Fetch Privacy Pattern associated CWE Weaknesses */
   const fetchCWEs = (async (id) => {
     setIsLoading(true);
     try {
@@ -42,8 +42,8 @@ const ViewCWEsByPattern = () => {
     return <Spin size="large" />;
   }
 
-   {/* Filtered Privacy Pattern associated CWE Weaknesses */}
-   const filteredCWEs = CWEs.filter((cwe) =>
+  /* Filtered Privacy Pattern associated CWE Weaknesses */
+  const filteredCWEs = CWEs.filter((cwe) =>
     cwe.attributes.description.toLowerCase().includes(searchTerm.toLowerCase())  || 
     ("CWE-"+cwe.attributes.cwe_id).toLowerCase().includes(searchTerm.toLowerCase()) 
   );

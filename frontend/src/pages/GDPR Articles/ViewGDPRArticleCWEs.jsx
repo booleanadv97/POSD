@@ -12,11 +12,11 @@ const ViewGDPRArticleCWEs = () => {
   const [ellipsis, setEllipsis] = useState(true);
   const [searchTerm, setSearchTerm] = useState(''); 
   
-  {/* Fetch GDPR Article associated CWE Weaknesses */}
+  /* Fetch GDPR Article associated CWE Weaknesses */
   const fetchCWEs = (async (id) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${API}/cwe-weaknesses?filters\[patterns\][gdpr_articles][$contains]=${id}`, {
+      const response = await fetch(`${API}/cwe-weaknesses?filters[patterns][gdpr_articles][$contains]=${id}`, {
         method: "GET",
         headers: {
           'Authorization': `Bearer ${getToken()}`, 
@@ -43,7 +43,7 @@ const ViewGDPRArticleCWEs = () => {
     return <Spin size="large" />;
   }
 
-  {/* Filtered GDPR Article associated CWE Weaknesses */}
+  /* Filtered GDPR Article associated CWE Weaknesses */
   const filteredGDPRArticleCWEs = CWEs.filter((CWE) =>
     ("CWE-"+ CWE.attributes.cwe_id.toString()).toLowerCase().includes(searchTerm.toLowerCase()) ||
     CWE.attributes.description.toLowerCase().includes(searchTerm.toLowerCase())
