@@ -9,8 +9,4 @@ The frontend is built using **React**, a powerful JavaScript library for buildin
 
 On the backend, the application utilizes **Strapi.io**, a flexible and open-source headless CMS that simplifies content management and provides a highly customizable API. 
 **Strapi.io** facilitates smooth communication between the frontend and the backend, ensuring that the application can easily integrate with the **Privacy Knowledge Base (PKB)**.
-
-## How to use
-- To run the **POSD System** you can start by cloning the repo.
-- After that make sure both frontend and backend components are up (**yarn develop** for the **backend**, **yarn start** to start the **frontend** component).
-- Once you've done that you can manage the **CMS** (backend) by accessing http://localhost:1337/ (admin credentials: g.mariniuc@studenti.uniba.it : Fafafagh97 ) or simply navigate the **POSD System** at http://localhost:3000/.
+ 
